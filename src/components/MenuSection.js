@@ -89,7 +89,7 @@ export default function MenuSection() {
 
             <div className={styles.grid}>
                 {MENU_DATA[activeCategory].map((item, index) => (
-                    <ProductCard key={index} {...item} />
+                    <ProductCard key={item.title} {...item} />
                 ))}
             </div>
         </section>

@@ -10,6 +10,13 @@ export default function ProductCard({ image, title, description, price, packSize
     // Initialize with the first variant if available
     const [selectedVariant, setSelectedVariant] = useState(variants ? variants[0] : null);
 
+    // Sync state if variants prop changes (safety fallback even with key change)
+    const [prevVariants, setPrevVariants] = useState(variants);
+    if (variants !== prevVariants) {
+        setPrevVariants(variants);
+        setSelectedVariant(variants ? variants[0] : null);
+    }
+
     // Helper to get current display values
     const currentPrice = selectedVariant ? selectedVariant.price : price;
     const currentPackSize = selectedVariant ? selectedVariant.size : packSize;

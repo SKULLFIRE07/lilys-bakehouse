@@ -3,12 +3,13 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './HeroSection.module.css';
 import Button from './Button';
+import { getBasePath } from '../utils/path';
 
 const IMAGES = [
-    '/images/hero-cake.jpg',
-    '/images/cheesecake-caramel.jpg',
-    '/images/cupcakes-choc.jpg',
-    '/images/cookies-double-choc.jpg'
+    getBasePath('/images/hero-cake.jpg'),
+    getBasePath('/images/cheesecake-caramel.jpg'),
+    getBasePath('/images/cupcakes-choc.jpg'),
+    getBasePath('/images/cookies-double-choc.jpg')
 ];
 
 export default function HeroSection() {

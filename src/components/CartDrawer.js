@@ -13,8 +13,8 @@ export default function CartDrawer() {
         .map((item) => `- ${item.title} (${item.packSize}) x${item.quantity} = ₹${item.price * item.quantity}`)
         .join('\n')}\n\nDelivery Fee: ₹100\n*Total: ₹${grandTotal}*\n\nPlease confirm my order! ✨`;
 
-    const whatsappLink = `https://wa.me/918087709790?text=${encodeURIComponent(checkoutMessage)}`; // Replace with actual number if provided
-    const instaLink = `https://ig.me/m/lilys.bakehouse?text=${encodeURIComponent(checkoutMessage)}`; // Direct message link often works, or just profile
+    const whatsappLink = `https://wa.me/918087709790?text=${encodeURIComponent(checkoutMessage)}`; // Updated number
+    const instaLink = `https://ig.me/m/lilys.bakehouse?text=${encodeURIComponent(checkoutMessage)}`;
 
     return (
         <AnimatePresence>
@@ -44,20 +44,22 @@ export default function CartDrawer() {
                                 <p className={styles.empty}>Your basket feels a bit light... 🍪</p>
                             ) : (
                                 cart.map((item, index) => (
-                                    <div key={`${item.title}-${index}`} className={styles.item}>
+                                    // Using packSize in key to differentiate variants
+                                    <div key={`${item.title}-${item.packSize}-${index}`} className={styles.item}>
                                         <img src={item.image} alt={item.title} className={styles.itemImage} />
                                         <div className={styles.itemDetails}>
                                             <h4>{item.title}</h4>
                                             <p>{item.packSize}</p>
                                             <div className={styles.controls}>
-                                                <button onClick={() => updateQuantity(item.title, item.price, -1)}>-</button>
+                                                {/* passing packSize to updateQuantity is critical now */}
+                                                <button onClick={() => updateQuantity(item.title, item.price, item.packSize, -1)}>-</button>
                                                 <span>{item.quantity}</span>
-                                                <button onClick={() => updateQuantity(item.title, item.price, 1)}>+</button>
+                                                <button onClick={() => updateQuantity(item.title, item.price, item.packSize, 1)}>+</button>
                                             </div>
                                         </div>
                                         <div className={styles.itemPrice}>
                                             <span>₹{item.price * item.quantity}</span>
-                                            <button onClick={() => removeFromCart(item.title, item.price)} className={styles.remove}>Remove</button>
+                                            <button onClick={() => removeFromCart(item.title, item.price, item.packSize)} className={styles.remove}>Remove</button>
                                         </div>
                                     </div>
                                 ))

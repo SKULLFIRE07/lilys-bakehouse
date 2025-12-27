@@ -11,7 +11,7 @@ export default function ProductCard({ image, title, description, price, packSize
 
     const handleAdd = () => {
         if (isCustom) {
-            window.open('https://wa.me/919876543210?text=Hi! I want to customize a order.', '_blank');
+            window.open('https://wa.me/918087709790?text=Hi! I want to customize a order.', '_blank');
             return;
         }
 

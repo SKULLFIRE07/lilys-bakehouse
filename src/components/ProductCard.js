@@ -6,14 +6,19 @@ import Button from './Button';
 
 export default function ProductCard({ image, title, description, price, packSize, variants }) {
     const { addToCart } = useCart();
+
+    // Initialize with the first variant if available
     const [selectedVariant, setSelectedVariant] = useState(variants ? variants[0] : null);
 
-    // Determine current display values based on variant selection or props
+    // Helper to get current display values
     const currentPrice = selectedVariant ? selectedVariant.price : price;
     const currentPackSize = selectedVariant ? selectedVariant.size : packSize;
+
     const isCustom = price === "Custom" || (typeof price === 'string' && price.toLowerCase().includes('custom'));
 
-    const handleVariantChange = (variant) => {
+    const handleVariantChange = (e) => {
+        const size = e.target.value;
+        const variant = variants.find(v => v.size === size);
         setSelectedVariant(variant);
     };
 
@@ -25,7 +30,7 @@ export default function ProductCard({ image, title, description, price, packSize
 
         addToCart({
             title,
-            price: currentPrice, // Always passes a number now for variants
+            price: currentPrice,
             packSize: currentPackSize,
             image
         });
@@ -40,42 +45,48 @@ export default function ProductCard({ image, title, description, price, packSize
                 <h3 className={styles.title}>{title}</h3>
                 <p className={styles.description}>{description}</p>
 
-                {/* Variant Selector */}
+                {/* Dropdown Selector */}
                 {variants ? (
                     <div style={{ marginBottom: '1rem' }}>
-                        <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                        <label style={{ fontSize: '0.8rem', color: '#888', display: 'block', marginBottom: '0.3rem' }}>Select Size:</label>
+                        <select
+                            value={selectedVariant.size}
+                            onChange={handleVariantChange}
+                            style={{
+                                width: '100%',
+                                padding: '0.6rem',
+                                fontSize: '0.9rem',
+                                borderRadius: '8px',
+                                border: '1px solid var(--color-caramel)',
+                                backgroundColor: '#fff',
+                                fontFamily: 'var(--font-body)',
+                                cursor: 'pointer',
+                                outline: 'none'
+                            }}
+                        >
                             {variants.map((variant) => (
-                                <button
-                                    key={variant.size}
-                                    onClick={() => handleVariantChange(variant)}
-                                    style={{
-                                        padding: '0.4rem 0.8rem',
-                                        fontSize: '0.8rem',
-                                        borderRadius: '20px',
-                                        border: '1px solid var(--color-caramel)',
-                                        background: selectedVariant.size === variant.size ? 'var(--color-caramel)' : 'transparent',
-                                        color: selectedVariant.size === variant.size ? '#fff' : 'var(--color-caramel)',
-                                        cursor: 'pointer',
-                                        transition: 'all 0.2s'
-                                    }}
-                                >
-                                    {variant.size}
-                                </button>
+                                <option key={variant.size} value={variant.size}>
+                                    {variant.size} - ₹{variant.price}
+                                </option>
                             ))}
-                        </div>
+                        </select>
                     </div>
                 ) : (
-                    <div className={styles.meta} style={{ minHeight: '24px' }}>
-                        {/* Spacing placeholder if no variants, or just normal meta */}
-                    </div>
+                    <div className={styles.meta} style={{ minHeight: '10px' }}></div>
                 )}
 
                 <div className={styles.meta}>
-                    <span className={styles.price}>{isCustom ? "Price Varies" : `₹${currentPrice}`}</span>
-                    <span className={styles.packSize}>{currentPackSize}</span>
+                    {/* If variants exist, price is shown in dropdown, but we can show it here too for clarity or hide it */}
+                    {variants ? (
+                        <span className={styles.price} style={{ fontSize: '1.4rem' }}>₹{currentPrice}</span>
+                    ) : (
+                        <span className={styles.price}>{isCustom ? "Price Varies" : `₹${currentPrice}`}</span>
+                    )}
+
+                    {!variants && <span className={styles.packSize}>{currentPackSize}</span>}
                 </div>
 
-                <div style={{ marginTop: '1.2rem' }}>
+                <div style={{ marginTop: '1rem' }}>
                     <Button onClick={handleAdd} style={{ width: '100%', fontSize: '0.9rem', padding: '0.8rem' }}>
                         {isCustom ? 'Contact to Customize' : 'Add to Basket'}
                     </Button>

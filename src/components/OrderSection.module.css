@@ -1,0 +1,35 @@
+.steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.stepCard {
+    background: #fff;
+    padding: 2rem;
+    border-radius: var(--radius-card);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.3s;
+}
+
+.stepCard:hover {
+    transform: translateY(-3px);
+}
+
+.number {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    color: var(--color-muted-gold);
+    line-height: 1;
+}
+
+.text {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    color: var(--color-text-main);
+}

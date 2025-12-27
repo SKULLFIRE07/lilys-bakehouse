@@ -13,7 +13,7 @@ export default function CartDrawer() {
         .map((item) => `- ${item.title} (${item.packSize}) x${item.quantity} = ₹${item.price * item.quantity}`)
         .join('\n')}\n\nDelivery Fee: ₹100\n*Total: ₹${grandTotal}*\n\nPlease confirm my order! ✨`;
 
-    const whatsappLink = `https://wa.me/919876543210?text=${encodeURIComponent(checkoutMessage)}`; // Replace with actual number if provided
+    const whatsappLink = `https://wa.me/918087709790?text=${encodeURIComponent(checkoutMessage)}`; // Replace with actual number if provided
     const instaLink = `https://ig.me/m/lilys.bakehouse?text=${encodeURIComponent(checkoutMessage)}`; // Direct message link often works, or just profile
 
     return (

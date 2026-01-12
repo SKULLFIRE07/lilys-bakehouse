@@ -11,8 +11,8 @@ const MENU_DATA = {
         { title: "Midnight Fudgy Brownies", description: "Intensely chocolatey, dense, and fudgy perfection.", price: 350, packSize: "Pack of 4", image: getBasePath("/images/brownie-stack.jpg") },
         { title: "Pookie Brookie", description: "The ultimate hybrid: Fudgy brownie meets chewy cookie.", price: 370, packSize: "Pack of 4", image: getBasePath("/images/brookies.jpg") },
         { title: "Nutella Centre-Filled Cookies", description: "A classic cookie with a molten Nutella heart.", price: 500, packSize: "Pack of 6", image: getBasePath("/images/cookies-melted-choc.jpg") },
-        { title: "Oreo & Cream Cookies", description: "Crunchy Oreo bits folded into a creamy vanilla dough.", price: 450, packSize: "Pack of 6", image: getBasePath("/images/cookies-thick-choc.jpg") },
-        { title: "Triple Chocolate Cookies", description: "White, milk, and dark chocolate in every bite.", price: 450, packSize: "Pack of 6", image: getBasePath("/images/cookies-double-choc.jpg") },
+        { title: "Oreo & Cream Cookies", description: "Crunchy Oreo bits folded into a creamy vanilla dough.", price: 450, packSize: "Pack of 6", image: getBasePath("/images/cookies-oreo.jpg") },
+        { title: "Triple Chocolate Cookies", description: "White, milk, and dark chocolate in every bite.", price: 450, packSize: "Pack of 6", image: getBasePath("/images/cookies-triple-choc.jpg") },
         { title: "Red Velvet Hearts", description: "Soft red velvet cookies with a cream cheese frosting swirl.", price: 450, packSize: "Pack of 6", image: getBasePath("/images/cookies-red-velvet.jpg") },
     ],
     "Cupcakes": [

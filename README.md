@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Lily's Bakehouse
+
+Single-page marketing and ordering experience for Lily's Bakehouse, built with Next.js 14 (App Router). It highlights the menu, ordering rules, and a lightweight cart so visitors can plan orders before messaging on Instagram.
+
+## Features
+- Animated hero carousel with smooth scroll CTAs to the menu and Instagram ordering.
+- Signature menu browser with tabbed categories, rich product cards, and price variants.
+- Cart drawer with quantity controls, floating cart shortcut, and localStorage persistence.
+- Ordering policy section to set expectations on lead time, payments, and delivery.
+- Static export configuration tuned for GitHub Pages (`basePath`/`assetPrefix` set to `/lilys-bakehouse`).
+
+## Tech Stack
+- Next.js 14 (App Router, static export)
+- React 18
+- Framer Motion for micro-interactions
+- Lenis for smooth scrolling
+- CSS Modules for styling
 
 ## Getting Started
-
-First, run the development server:
+Prereq: Node 18+ and npm.
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# app runs on http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Build
+Static assets are emitted to `out/` (suitable for GitHub Pages or any static host):
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```bash
+npm run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Lint
+```bash
+npm run lint
+```
 
-## Learn More
+## Deployment Notes
+- The project uses `output: 'export'` with `basePath` and `assetPrefix` set to `/lilys-bakehouse` for GitHub Pages. If you deploy under a different repo/path, update `next.config.mjs` and `getBasePath` accordingly.
+- After `npm run build`, publish the `out/` directory to your static hosting provider.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Project Structure
+- `src/app` — App Router entry, global styles, layout.
+- `src/components` — UI sections (Hero, Menu, Order, Footer), cart drawer, marquee, smooth scroll.
+- `src/context/CartContext.js` — Cart state, persistence, and helpers.
+- `public/images` — Product imagery used across the menu and hero.
